@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #B05A28;
+
+  /* Luxury display font — headings, hero titles */
+  --font-display: "Bodoni Moda", "Playfair Display", serif;
+
+  /* Clean UI / body font */
+  --font-sans: "Inter", "Montserrat", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-black bg-white;
+    font-family: "Inter", "Montserrat", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-black;
+    font-family: "Bodoni Moda", "Playfair Display", serif;
+  }
+
+  p, span, a, label, button, input, textarea, select {
+    @apply text-black;
+    font-family: "Inter", "Montserrat", sans-serif;
+  }
+
+  img {
+    @apply opacity-80;
+  }
+
+  .img-secondary {
+    @apply opacity-80 mix-blend-multiply;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand text-white font-bold py-2 px-4 rounded hover:opacity-90 transition duration-300;
+  }
+
+  /* Utility classes for explicit font overrides */
+  .font-display {
+    font-family: "Bodoni Moda", "Playfair Display", serif;
+  }
+
+  .font-body {
+    font-family: "Inter", "Montserrat", sans-serif;
+  }
+}
