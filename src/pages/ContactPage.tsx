@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -7,6 +7,55 @@ const fadeUp = {
   hidden: { opacity: 0, y: 36 },
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1, ease: 'easeOut' as const } }),
 };
+
+// Animated count-up hook
+function useCountUp(target: number, duration = 1800, start = false) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [start, target, duration]);
+  return count;
+}
+
+// Stat item with count-up
+function StatItem({ value, label, delay }: { value: string; label: string; delay: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  // Parse numeric part and suffix (e.g. '500K+' => num=500, suffix='K+')
+  const match = value.match(/^(\d+)(.*)$/);
+  const numericTarget = match ? parseInt(match[1]) : 0;
+  const suffix = match ? match[2] : value;
+  const isNumeric = !!match;
+
+  const count = useCountUp(numericTarget, 1600, inView && isNumeric);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      custom={delay}
+    >
+      <div className="text-2xl md:text-3xl font-bold">
+        {isNumeric ? `${count}${suffix}` : value}
+      </div>
+      <div className="text-xs font-semibold tracking-wider uppercase opacity-80 mt-1">{label}</div>
+    </motion.div>
+  );
+}
 
 const offices = [
   { city: 'Dhaka HQ', address: 'Hazaribagh Tannery Area, Dhaka-1209, Bangladesh', phone: '+880 1700-000000', email: 'dhaka@labenza.com' },
@@ -62,13 +111,10 @@ export default function ContactPage() {
           {[
             { value: '25+', label: 'Years Experience' },
             { value: '60+', label: 'Countries Served' },
-            { value: '500K+', label: 'Sq ft Monthly' },
-            { value: '24h', label: 'Response Time' },
+            { value: '500+', label: 'Sq ft Monthly (K)' },
+            { value: '24+', label: 'Hour Response Time' },
           ].map((s, i) => (
-            <motion.div key={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}>
-              <div className="text-2xl md:text-3xl font-bold">{s.value}</div>
-              <div className="text-xs font-semibold tracking-wider uppercase opacity-80 mt-1">{s.label}</div>
-            </motion.div>
+            <StatItem key={i} value={s.value} label={s.label} delay={i} />
           ))}
         </div>
       </section>

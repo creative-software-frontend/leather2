@@ -1,19 +1,21 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// Import diverse images for categories
-import cowCrustImg from '../assets/images/cow-crust222.jpg';
-import rawImg from '../assets/images/raw-selection.jpg';
-import finishImg from '../assets/images/finish_quality-background879.jpg';
-import aboutImg from '../assets/images/about.jpg';
+// AI-generated category images
+import walletsImg from '../assets/images/cat-wallets.png';
+import bagsImg from '../assets/images/cat-bags.png';
+import shoesImg from '../assets/images/cat-shoes.png';
+import beltsImg from '../assets/images/cat-belts.png';
+import officeImg from '../assets/images/cat-office.png';
+import catalogImg from '../assets/images/cat-catalog.png';
 
 const categories = [
-  { title: 'Wallets', colSpan: 'col-span-2', path: '/categories/wallets', img: cowCrustImg },
-  { title: 'Bags', colSpan: 'col-span-1', path: '/categories/bags', img: rawImg },
-  { title: 'Shoes', colSpan: 'col-span-1', path: '/categories/shoes', img: finishImg },
-  { title: 'Belts', colSpan: 'col-span-1', path: '/categories/belts', img: aboutImg },
-  { title: 'Office Accessories', colSpan: 'col-span-2', path: '/categories/office', img: cowCrustImg },
-  { title: 'Explore Catalog', colSpan: 'col-span-1', path: '/catalog', img: finishImg },
+  { title: 'Wallets', colSpan: 'col-span-2', path: '/categories/wallets', img: walletsImg },
+  { title: 'Bags', colSpan: 'col-span-1', path: '/categories/bags', img: bagsImg },
+  { title: 'Shoes', colSpan: 'col-span-1', path: '/categories/shoes', img: shoesImg },
+  { title: 'Belts', colSpan: 'col-span-1', path: '/categories/belts', img: beltsImg },
+  { title: 'Office Accessories', colSpan: 'col-span-2', path: '/categories/office', img: officeImg },
+  { title: 'Explore Catalog', colSpan: 'col-span-1', path: '/catalog', img: catalogImg },
 ];
 
 export default function CategoriesSection() {

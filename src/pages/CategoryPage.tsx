@@ -3,11 +3,42 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-// Import images for product list
-import cowCrustImg from '../assets/images/cow-crust222.jpg';
-import rawImg from '../assets/images/raw-selection.jpg';
-import finishImg from '../assets/images/finish_quality-background879.jpg';
-import aboutImg from '../assets/images/about.jpg';
+// Banner images (AI-generated, locally stored)
+import walletsImg from '../assets/images/cat-wallets.png';
+import bagsImg from '../assets/images/cat-bags.png';
+import shoesImg from '../assets/images/cat-shoes.png';
+import beltsImg from '../assets/images/cat-belts.png';
+import officeImg from '../assets/images/cat-office.png';
+import catalogImg from '../assets/images/cat-catalog.png';
+
+// Unsplash product images — matched per product
+const IMG = {
+  // Wallets
+  bifold:    'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80&fit=crop',
+  cardHolder:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&fit=crop',
+  zipWallet: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop',
+  moneyClip: 'https://images.unsplash.com/photo-1524498577-85df7e7e2371?w=600&q=80&fit=crop',
+  // Bags
+  briefcase: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=600&q=80&fit=crop',
+  duffel:    'https://images.unsplash.com/photo-1553062407-98eeb64c6a66?w=600&q=80&fit=crop',
+  messenger: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fe?w=600&q=80&fit=crop',
+  backpack:  'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&fit=crop',
+  // Shoes
+  oxford:    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&fit=crop',
+  chelsea:   'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600&q=80&fit=crop',
+  loafer:    'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&q=80&fit=crop',
+  derby:     'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80&fit=crop',
+  // Belts
+  dressBelt: 'https://images.unsplash.com/photo-1624913503273-5f9c4e980dba?w=600&q=80&fit=crop',
+  utilBelt:  'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80&fit=crop',
+  wovenBelt: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80&fit=crop',
+  suedeBelt: 'https://images.unsplash.com/photo-1611085583191-a3b181a88577?w=600&q=80&fit=crop',
+  // Office
+  portfolio: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600&q=80&fit=crop',
+  deskPad:   'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&fit=crop',
+  techOrg:   'https://images.unsplash.com/photo-1598820101039-5d2b3a4be22b?w=600&q=80&fit=crop',
+  mousepad:  'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?w=600&q=80&fit=crop',
+};
 
 interface ProductItem {
   id: number;
@@ -30,62 +61,74 @@ const categoriesData: Record<string, CategoryData> = {
     title: 'Leather Wallets',
     subtitle: 'Classic Craftsmanship, Daily Companion',
     description: 'Sleek, minimalist design meets robust premium leather. Engineered for durability, featuring quick-access slots, RFID protection, and hand-finished stitching.',
-    bannerImg: cowCrustImg,
+    bannerImg: walletsImg,
     products: [
-      { id: 1, name: 'Bifold Classic Wallet', price: '$85', description: 'Handcrafted bifold with 6 card slots and full-grain cow crust leather.', img: cowCrustImg },
-      { id: 2, name: 'Minimalist Card Holder', price: '$45', description: 'Ultra-slim leather card sleeve with central cash pocket.', img: rawImg },
-      { id: 3, name: 'Travel Zip Portfolio', price: '$120', description: 'Full zipper wallet spacious enough for passport, boarding pass, and cards.', img: finishImg },
-      { id: 4, name: 'Slim Money Clip Wallet', price: '$65', description: 'Magnetic money clip wrapped in premium finished leather.', img: aboutImg },
+      { id: 1, name: 'Bifold Classic Wallet',    price: '$85',  description: 'Handcrafted bifold with 6 card slots and full-grain cow crust leather.', img: IMG.bifold },
+      { id: 2, name: 'Minimalist Card Holder',   price: '$45',  description: 'Ultra-slim leather card sleeve with central cash pocket.',                img: IMG.cardHolder },
+      { id: 3, name: 'Travel Zip Portfolio',     price: '$120', description: 'Full zipper wallet spacious enough for passport, boarding pass, and cards.', img: IMG.zipWallet },
+      { id: 4, name: 'Slim Money Clip Wallet',   price: '$65',  description: 'Magnetic money clip wrapped in premium finished leather.',                img: IMG.moneyClip },
     ]
   },
   bags: {
     title: 'Luxury Leather Bags',
     subtitle: 'Carry Your Legacy Everywhere',
     description: 'From executive briefcases to weekend duffels, our bags are crafted from thick bovine hides and designed to age beautifully, gaining a rich character over time.',
-    bannerImg: rawImg,
+    bannerImg: bagsImg,
     products: [
-      { id: 1, name: 'Bryant Analyst Briefcase', price: '$450', description: 'Sophisticated professional bag with dedicated laptop sleeve and organizers.', img: cowCrustImg },
-      { id: 2, name: 'Heritage Weekend Duffel', price: '$550', description: 'Spacious cabin-size travel bag crafted from water-resistant finished leather.', img: rawImg },
-      { id: 3, name: 'Commuter Slim Messenger', price: '$290', description: 'Crossbody bag perfect for tablets, notebooks, and everyday essentials.', img: finishImg },
-      { id: 4, name: 'Vanguard Leather Backpack', price: '$380', description: 'Ergonomic backpack blending vintage style with modern interior utilities.', img: aboutImg },
+      { id: 1, name: 'Bryant Analyst Briefcase',  price: '$450', description: 'Sophisticated professional bag with dedicated laptop sleeve and organizers.', img: IMG.briefcase },
+      { id: 2, name: 'Heritage Weekend Duffel',   price: '$550', description: 'Spacious cabin-size travel bag crafted from water-resistant finished leather.', img: IMG.duffel },
+      { id: 3, name: 'Commuter Slim Messenger',   price: '$290', description: 'Crossbody bag perfect for tablets, notebooks, and everyday essentials.',    img: IMG.messenger },
+      { id: 4, name: 'Vanguard Leather Backpack', price: '$380', description: 'Ergonomic backpack blending vintage style with modern interior utilities.',  img: IMG.backpack },
     ]
   },
   shoes: {
     title: 'Premium Leather Shoes',
     subtitle: 'Step Into Excellence',
     description: 'Hand-lasted footwear using the finest cow crust and finished calf leathers. Built on ergonomic lasts with Goodyear welted construction for life-long wear.',
-    bannerImg: finishImg,
+    bannerImg: shoesImg,
     products: [
-      { id: 1, name: 'Classic Oxford Brogues', price: '$220', description: 'Elegant formal shoes featuring hand-burnished crust leather detailing.', img: cowCrustImg },
-      { id: 2, name: 'Vagabond Chelsea Boots', price: '$260', description: 'Sleek slip-on ankle boots with flexible elastic panels and pull tabs.', img: rawImg },
-      { id: 3, name: 'Heritage Penny Loafers', price: '$195', description: 'Slip-on luxury loafers in high-shine finished leather.', img: finishImg },
-      { id: 4, name: 'Metropolitan Derby Shoes', price: '$210', description: 'Versatile derby shoes with reinforced soles for premium comfort.', img: aboutImg },
+      { id: 1, name: 'Classic Oxford Brogues',     price: '$220', description: 'Elegant formal shoes featuring hand-burnished crust leather detailing.', img: IMG.oxford },
+      { id: 2, name: 'Vagabond Chelsea Boots',     price: '$260', description: 'Sleek slip-on ankle boots with flexible elastic panels and pull tabs.',   img: IMG.chelsea },
+      { id: 3, name: 'Heritage Penny Loafers',     price: '$195', description: 'Slip-on luxury loafers in high-shine finished leather.',                  img: IMG.loafer },
+      { id: 4, name: 'Metropolitan Derby Shoes',   price: '$210', description: 'Versatile derby shoes with reinforced soles for premium comfort.',         img: IMG.derby },
     ]
   },
   belts: {
     title: 'Full-Grain Leather Belts',
     subtitle: 'The Perfect Finish',
     description: 'Single-piece full-grain leather belts with solid brass buckles. No fillers, no bonded layers—just pure premium hide built to hold shape forever.',
-    bannerImg: aboutImg,
+    bannerImg: beltsImg,
     products: [
-      { id: 1, name: 'Classic Dress Belt', price: '$55', description: '30mm wide belt with feathered edges, perfect for formal wear.', img: cowCrustImg },
-      { id: 2, name: 'Casual Utility Belt', price: '$60', description: '40mm wide rugged belt with brushed nickel double prong buckle.', img: rawImg },
-      { id: 3, name: 'Woven Leather Belt', price: '$75', description: 'Intricately braided leather strips offering stretch and custom fit.', img: finishImg },
-      { id: 4, name: 'Suede Heritage Belt', price: '$65', description: 'Soft textured suede belt with contrast stitching and brass buckle.', img: aboutImg },
+      { id: 1, name: 'Classic Dress Belt',   price: '$55', description: '30mm wide belt with feathered edges, perfect for formal wear.',                      img: IMG.dressBelt },
+      { id: 2, name: 'Casual Utility Belt',  price: '$60', description: '40mm wide rugged belt with brushed nickel double prong buckle.',                     img: IMG.utilBelt },
+      { id: 3, name: 'Woven Leather Belt',   price: '$75', description: 'Intricately braided leather strips offering stretch and custom fit.',                 img: IMG.wovenBelt },
+      { id: 4, name: 'Suede Heritage Belt',  price: '$65', description: 'Soft textured suede belt with contrast stitching and brass buckle.',                  img: IMG.suedeBelt },
     ]
   },
   office: {
     title: 'Office & Desk Accessories',
     subtitle: 'Refined Workspace Elegance',
     description: 'Elevate your daily work environment. Hand-crafted desk pads, portfolios, and tech organizers designed to keep your workspace clean and inspiring.',
-    bannerImg: cowCrustImg,
+    bannerImg: officeImg,
     products: [
-      { id: 1, name: 'Executive Portfolio Folder', price: '$110', description: 'A4 writing pad holder with slots for cards, tablet, and pen loop.', img: cowCrustImg },
-      { id: 2, name: 'Minimalist Desk Pad', price: '$85', description: 'Large leather desk mat protecting your workspace with a premium feel.', img: rawImg },
-      { id: 3, name: 'Valet Tech Organizer', price: '$70', description: 'Roll-up pouch for chargers, mouse, and cables in soft leather.', img: finishImg },
-      { id: 4, name: 'Leather Mousepad & Coaster', price: '$35', description: 'Smooth glide surface mousepad paired with a matching cup coaster.', img: aboutImg },
+      { id: 1, name: 'Executive Portfolio Folder',   price: '$110', description: 'A4 writing pad holder with slots for cards, tablet, and pen loop.',              img: IMG.portfolio },
+      { id: 2, name: 'Minimalist Desk Pad',          price: '$85',  description: 'Large leather desk mat protecting your workspace with a premium feel.',           img: IMG.deskPad },
+      { id: 3, name: 'Valet Tech Organizer',         price: '$70',  description: 'Roll-up pouch for chargers, mouse, and cables in soft leather.',                 img: IMG.techOrg },
+      { id: 4, name: 'Leather Mousepad & Coaster',   price: '$35',  description: 'Smooth glide surface mousepad paired with a matching cup coaster.',              img: IMG.mousepad },
     ]
-  }
+  },
+  catalog: {
+    title: 'Full Product Catalog',
+    subtitle: 'Browse Our Complete Collection',
+    description: 'Explore our entire range of handcrafted leather goods — from everyday carry essentials to executive accessories, all made with premium full-grain hides.',
+    bannerImg: catalogImg,
+    products: [
+      { id: 1, name: 'Bifold Classic Wallet',    price: '$85',  description: 'Handcrafted bifold with 6 card slots and full-grain cow crust leather.',            img: IMG.bifold },
+      { id: 2, name: 'Bryant Analyst Briefcase', price: '$450', description: 'Sophisticated professional bag with dedicated laptop sleeve.',                      img: IMG.briefcase },
+      { id: 3, name: 'Classic Oxford Brogues',   price: '$220', description: 'Elegant formal shoes featuring hand-burnished crust leather detailing.',            img: IMG.oxford },
+      { id: 4, name: 'Classic Dress Belt',       price: '$55',  description: '30mm wide belt with feathered edges, perfect for formal wear.',                     img: IMG.dressBelt },
+    ]
+  },
 };
 
 const fadeUp = {
