@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '../assets/images/logo-leh1-01.png';
 
@@ -32,6 +32,19 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/catalog?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery('');
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -152,14 +165,52 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="text-gray-700 hover:text-[#B05A28] transition-colors p-2 rounded-md hover:bg-orange-50">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-              </svg>
-            </button>
+            <div className="flex items-center h-10">
+              <AnimatePresence mode="wait">
+                {!searchOpen ? (
+                  <motion.button 
+                    key="search-btn"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => setSearchOpen(true)}
+                    className="text-gray-700 hover:text-[#B05A28] transition-colors p-2 rounded-full hover:bg-orange-50"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                    </svg>
+                  </motion.button>
+                ) : (
+                  <motion.form 
+                    key="search-form"
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 220, opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onSubmit={handleSearchSubmit}
+                    className="relative overflow-hidden flex items-center"
+                  >
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search..."
+                      autoFocus
+                      className="w-full py-2 pl-4 pr-10 text-sm bg-gray-100 border-none rounded-full focus:ring-2 focus:ring-[#B05A28] outline-none"
+                    />
+                    <button type="button" onClick={() => setSearchOpen(false)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#B05A28]">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
             <Link
               to="/contact"
-              className="px-5 py-2 text-sm font-bold text-white rounded-md tracking-wide transition-all duration-200 hover:opacity-90 active:scale-95"
+              className="px-5 py-2 text-sm font-bold text-white rounded-md tracking-wide transition-all duration-200 hover:opacity-90 active:scale-95 whitespace-nowrap"
               style={{ background: '#B05A28' }}
             >
               Get Quote

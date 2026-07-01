@@ -72,19 +72,30 @@ export default function HomePage() {
         <div className="py-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 30 }}
+              whileInView={{ y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-[#A48265] text-white p-12 flex flex-col md:flex-row items-center justify-between gap-6"
-              style={{ borderTopLeftRadius: '2rem', borderBottomRightRadius: '2rem' }}
+              className="relative overflow-hidden text-white p-12 flex flex-col md:flex-row items-center justify-between gap-6"
+              style={{
+                borderTopLeftRadius: '2rem',
+                borderBottomRightRadius: '2rem',
+                background: 'linear-gradient(135deg, #3B2009 0%, #6B3A1F 40%, #A0522D 100%)',
+              }}
             >
-              <div className="w-full md:w-1/2">
-                <h2 className="text-4xl font-serif mb-4 text-white">Leather Collection</h2>
-                <p className="mb-6 opacity-90 text-white">New Arrivals and premium hides curated for global shipment.</p>
+              {/* Decorative background circles */}
+              <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full opacity-10" style={{ background: '#fff' }} />
+              <div className="absolute -bottom-10 right-32 w-40 h-40 rounded-full opacity-10" style={{ background: '#fff' }} />
+              <div className="absolute top-4 right-1/3 w-24 h-24 rounded-full opacity-5" style={{ background: '#fff' }} />
+
+              <div className="w-full md:w-1/2 relative z-10">
+                <p className="text-xs tracking-[0.3em] text-[#D4956A] uppercase font-bold mb-3">Premium Leather</p>
+                <h2 className="text-4xl md:text-5xl font-serif mb-4 text-white drop-shadow-sm">Leather Collection</h2>
+                <p className="mb-8 text-white/90 text-lg font-medium tracking-wide">New Arrivals and premium hides curated for global shipment.</p>
                 <Link to="/catalog">
-                  <button className="bg-[#6B4B32] text-white px-6 py-3 rounded hover:bg-black transition font-semibold">
-                    Discover Catalog →
+                  <button className="bg-white text-[#6B3A1F] px-8 py-4 rounded-full hover:bg-gray-100 transition-all font-bold shadow-xl flex items-center gap-2 group">
+                    Discover Catalog
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </button>
                 </Link>
               </div>
@@ -167,7 +178,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase">Email Inquiry</p>
-                    <p className="text-sm font-semibold text-gray-800">export@leather-export.com</p>
+                    <p className="text-sm font-semibold text-gray-800">info@labenza.com</p>
                   </div>
                 </div>
               </div>

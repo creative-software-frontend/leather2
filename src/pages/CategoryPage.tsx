@@ -4,25 +4,35 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 // Banner images (AI-generated, locally stored)
-import walletsImg from '../assets/images/cat-wallets.png';
-import bagsImg from '../assets/images/cat-bags.png';
-import shoesImg from '../assets/images/cat-shoes.png';
-import beltsImg from '../assets/images/cat-belts.png';
-import officeImg from '../assets/images/cat-office.png';
-import catalogImg from '../assets/images/cat-catalog.png';
+import walletsImg  from '../assets/images/cat-wallets.png';
+import bagsImg     from '../assets/images/cat-bags.png';
+import shoesImg    from '../assets/images/cat-shoes.png';
+import beltsImg    from '../assets/images/cat-belts.png';
+import officeImg   from '../assets/images/cat-office.png';
+import catalogImg  from '../assets/images/cat-catalog.png';
+
+// AI-generated Luxury Bag product images
+import bagBriefcase from '../assets/images/bag-briefcase.png';
+import bagDuffel    from '../assets/images/bag-duffel.png';
+import bagMessenger from '../assets/images/bag-messenger.png';
+import bagBackpack  from '../assets/images/bag-backpack.png';
+
+// AI-generated Wallet images
+import walletBifold    from '../assets/images/wallet-bifold.png';
+import walletMoneyClip from '../assets/images/wallet-moneyclip.png';
 
 // Unsplash product images — matched per product
 const IMG = {
-  // Wallets
-  bifold:    'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80&fit=crop',
-  cardHolder:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&fit=crop',
-  zipWallet: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop',
-  moneyClip: 'https://images.unsplash.com/photo-1524498577-85df7e7e2371?w=600&q=80&fit=crop',
-  // Bags
-  briefcase: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=600&q=80&fit=crop',
-  duffel:    'https://images.unsplash.com/photo-1553062407-98eeb64c6a66?w=600&q=80&fit=crop',
-  messenger: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fe?w=600&q=80&fit=crop',
-  backpack:  'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&fit=crop',
+  // Wallets — AI generated local images
+  bifold:     walletBifold    as unknown as string,
+  cardHolder: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80&fit=crop',
+  zipWallet:  'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop',
+  moneyClip:  walletMoneyClip as unknown as string,
+  // Bags — AI generated local images
+  briefcase: bagBriefcase as unknown as string,
+  duffel:    bagDuffel    as unknown as string,
+  messenger: bagMessenger as unknown as string,
+  backpack:  bagBackpack  as unknown as string,
   // Shoes
   oxford:    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80&fit=crop',
   chelsea:   'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600&q=80&fit=crop',
@@ -32,11 +42,11 @@ const IMG = {
   dressBelt: 'https://images.unsplash.com/photo-1624913503273-5f9c4e980dba?w=600&q=80&fit=crop',
   utilBelt:  'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80&fit=crop',
   wovenBelt: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80&fit=crop',
-  suedeBelt: 'https://images.unsplash.com/photo-1611085583191-a3b181a88577?w=600&q=80&fit=crop',
+  suedeBelt: 'https://images.unsplash.com/photo-1559563458-527698bf5295?w=600&q=80&fit=crop',
   // Office
   portfolio: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600&q=80&fit=crop',
   deskPad:   'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&fit=crop',
-  techOrg:   'https://images.unsplash.com/photo-1598820101039-5d2b3a4be22b?w=600&q=80&fit=crop',
+  techOrg:   'https://images.unsplash.com/photo-1603400521630-9f2de124b33b?w=600&q=80&fit=crop',
   mousepad:  'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?w=600&q=80&fit=crop',
 };
 

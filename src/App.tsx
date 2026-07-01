@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import CatalogPage from './pages/CatalogPage';
 import CategoryPage from './pages/CategoryPage';
+import FloatingWidgets from './components/FloatingWidgets';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         {/* Category pages */}
         <Route path="/categories/:categoryName" element={<CategoryPage />} />
       </Routes>
+      <FloatingWidgets />
     </BrowserRouter>
   );
 }
