@@ -13,15 +13,15 @@ export default function HeroSection() {
         transition={{ duration: 0.6 }}
         className="bg-[#6B4B32] text-white p-8 md:p-12 w-full md:w-1/3 flex flex-col justify-between" style={{ borderTopRightRadius: '2rem', borderBottomLeftRadius: '0.5rem', borderBottomRightRadius: '0.5rem', borderTopLeftRadius: '0.5rem' }}>
         <div>
-          <h3 className="text-sm font-semibold tracking-wide text-white uppercase mb-4">To inspire</h3>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight mb-6 text-white">A Refined<br/>Lifestyle</h1>
-          <p className="text-sm opacity-80 mb-8 text-white max-w-xs">
-            Handcrafted premium leather goods built to last a lifetime. Timeless style meets artisan quality.
+          <h3 className="text-sm font-semibold tracking-wide text-white/80 uppercase mb-4 tracking-[0.2em]">100% Export Oriented</h3>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight mb-6 text-white">Shikder<br/>Leather<br/>House</h1>
+          <p className="text-sm opacity-85 mb-8 text-white max-w-xs leading-relaxed">
+            All kinds of crust and finished leather exporter — a 100% export oriented organisation delivering premium quality worldwide.
           </p>
         </div>
         <div>
           <button className="border border-white text-white px-6 py-2 rounded-sm hover:bg-white hover:text-[#6B4B32] transition">
-            Shop Now
+            Explore Products
           </button>
         </div>
       </motion.div>
